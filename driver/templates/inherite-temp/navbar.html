@@ -1,0 +1,38 @@
+{% load bootstrap3 %} {%load staticfiles%} {% block styles %} {% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Armata|Julius+Sans+One|Philosopher|Text+Me+One" rel="stylesheet">{% endblock %}
+<div class="navbar-wrapper">
+
+  <input id="burger" type="checkbox" />
+
+  <label for="burger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+
+
+  <nav>
+    <img src="{% static 'img/uber.png'%}" class='img-responsive' style='height:4vh; padding:10px 80px; margin-top:20px' alt=""
+      srcset="">
+    <ul>
+      <li>
+        <a class='btn btn-default' href="#">Driver</a>
+      </li>
+      <br>
+      <li>
+        <a class='btn btn-default' href="#">Profile</a>
+      </li>
+      <br>
+      <li>
+        {% if user.is_authenticated %}
+          <a class='btn btn-default' href="/logout">Logout</a>       
+        {% else %}
+        <li>
+          <a class='btn btn-default' href="/accounts/login/">Login</a>
+        </li>
+        {% endif %}
+      </li>
+    </ul>
+  </nav>
+</div>
