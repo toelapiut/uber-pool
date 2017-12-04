@@ -1,0 +1,168 @@
+/* font-family: 'Playfair Display', serif;
+font-family: 'Indie Flower', cursive;
+font-family: 'Gloria Hallelujah', cursive; */
+/* body {
+  padding: 16px;
+} */
+
+.wrapper {
+  margin-top: 11%;
+}
+
+.image {
+  padding: 0px;
+}
+
+
+div.col-md-2.col-sm-2.col-lg-2.col-xs-2 {
+  padding: 0px 0px 0px;
+}
+
+.navbar-wrapper h1 {
+  position: fixed;
+  color: black;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  top: 40px;
+  left: 40px;
+  z-index: 6;
+  font-size: 20px;
+  font-weight: 900;
+  font-family: sans-serif;
+  text-transform: uppercase;
+}
+
+.navbar-wrapper input+label {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  height: 20px;
+  width: 15px;
+  z-index: 5;
+}
+
+.navbar-wrapper input+label span {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  top: 50%;
+  margin-top: -1px;
+  left: 0;
+  display: block;
+  background: #020304;
+  transition: .5s;
+}
+
+.navbar-wrapper input+label span:first-child {
+  top: 3px;
+}
+
+.navbar-wrapper input+label span:last-child {
+  top: 16px;
+}
+
+.navbar-wrapper label:hover {
+  cursor: pointer;
+}
+
+.navbar-wrapper input:checked+label span {
+  opacity: 0;
+  top: 50%;
+}
+
+.navbar-wrapper input:checked+label span:first-child {
+  opacity: 1;
+  transform: rotate(405deg);
+}
+
+.navbar-wrapper input:checked+label span:last-child {
+  opacity: 1;
+  transform: rotate(-405deg);
+}
+
+.navbar-wrapper input~nav {
+  background: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 83px;
+  z-index: 3;
+  transition: .5s;
+  transition-delay: .5s;
+  overflow: hidden;
+}
+
+.navbar-wrapper input~nav>ul {
+  text-align: center;
+  position: absolute;
+  top: 35%;
+  left: 20%;
+  right: 20%;
+}
+
+.navbar-wrapper input~nav>ul>li {
+  opacity: 0;
+  transition: .5s;
+  transition-delay: 0s;
+}
+
+.navbar-wrapper input~nav>ul>li>a {
+  text-decoration: none;
+  list-style: none;
+  text-transform: uppercase;
+  color: #020304;
+  font-weight: 700;
+  font-family: sans-serif;
+  display: block;
+  padding: 30px;
+}
+
+.navbar-wrapper input:checked~nav {
+  height: 100%;
+  transition-delay: 0s;
+}
+
+.navbar-wrapper input:checked~nav>ul>li {
+  opacity: 1;
+  transition-delay: .5s;
+}
+
+div.navbar-wrapper nav ul{
+  list-style: none;
+  font-family: 'Playfair Display', serif;
+}
+
+nav h3{
+  font-family: 'Gloria Hallelujah', cursive;
+  font-weight: bold;
+  font-size: 1.9em;
+  margin-left: 20px;
+}
+div.navbar-wrapper label{
+  margin-top: -9px;
+}
+.get_there{
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  font-family: 'Julius Sans One', sans-serif;
+}
+.your_day{
+  font-size: 25px;
+  margin-left: 
+  font-weight: 2px;
+  letter-spacing: 0.2em;
+  font-family: 'Julius Sans One', sans-serif;
+}
+div.wrapper h2{
+  margin: 0px 0px ;
+  margin-bottom: 3%;
+  margin-left: 30%
+}
+div.wrapper h1{
+  margin: 0px 0px 0px;
+  margin-left: 30%
+}
+div.wrapper{
+  margin-top:8%;
+}
