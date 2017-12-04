@@ -1,0 +1,14 @@
+{%extends 'inherite-temp/base.html'%}{%load bootstrap3%} {% load staticfiles %} {%block content%}
+
+<div class="wrapper">
+    <h1><span class='get_there'>Get There</span></h1>
+    <h2><span class='your_day'>Your day belongs to You</span></h2>
+</div>
+<div class="image">
+    <img src="{% static 'img/uber_.jpg'%}" alt="Instagram" class="img-responsive" style='height:63vh;width:100%'>
+</div>
+{% block scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% bootstrap_javascript %} {% endblock%} {%endblock%}
