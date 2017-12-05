@@ -1,82 +1,78 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
-from .models import *
-from .forms import *
-from django.views.generic import CreateView
-from django.contrib.auth.models import User
-from django.shortcuts import render, redirect, HttpResponseRedirect
-from django.contrib.auth.views import logout
-from django.db import transaction
-from django.core.exceptions import ObjectDoesNotExist
-from django.http import Http404
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-
-
-from .forms import (
-    RegistrationForm,
-    EditProfileForm
-)
-
-from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
-from django.contrib.auth import update_session_auth_hash
+from uber import settings
+from django.db import transaction
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+from .forms import *
+from django.contrib.auth.models import User, Group
 
 # Create your views here.
+
+
 def index(request):
     title = 'Welcome | uber-pool'
 
     return render(request, 'index.html', {'title': title})
 
 
-def register(request):
+@login_required(login_url='/accounts/login/')
+@transaction.atomic
+def Driver_Prof(request):
+    '''
+    creating a user instance
+    '''
+    instance = request.user
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
+        '''
+        checking if the form is validated if so we create a form varible to hold the Files
+        '''
+        form = DriversForm(request.POST, request.FILES, instance=request.user)
+        driver_pro= DriversForm(
+            request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid() and driver_pro.is_valid():
+            instance.groups.add(Group.objects.get(
+                name=settings.DRIVER_GROUP_NAME))
             form.save()
-            return redirect(reverse('accounts:home'))
-    else:
-        form = RegistrationForm()
-
-        args = {'form': form}
-        return render(request, 'accounts/reg_form.html', args)
-
-
-def view_profile(request, pk=None):
-    if pk:
-        user = User.objects.get(pk=pk)
-    else:
-        user = request.user
-    args = {'user': user}
-    return render(request, 'accounts/profile.html', args)
-
-
-def edit_profile(request):
-    if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=request.user)
-
-        if form.is_valid():
-            form.save()
-            return redirect(reverse('accounts:view_profile'))
-    else:
-        form = EditProfileForm(instance=request.user)
-        args = {'form': form}
-        return render(request, 'accounts/edit_profile.html', args)
-
-
-def change_password(request):
-    if request.method == 'POST':
-        form = PasswordChangeForm(data=request.POST, user=request.user)
-
-        if form.is_valid():
-            form.save()
-            update_session_auth_hash(request, form.user)
-            return redirect(reverse('accounts:view_profile'))
+            driver_pro.save()
+            messages.success(request, 'Profile successfully updated')
+            return redirect(drive)
         else:
-            return redirect(reverse('accounts:change_password'))
+            messages.error(
+                request, 'Error while activating driver,,, try again')
     else:
-        form = PasswordChangeForm(user=request.user)
+        form = DriverForm(instance=request.user)
+        driver_pro = DriversForm(instance=request.user.profile)
 
-        args = {'form': form}
-        return render(request, 'accounts/change_password.html', args)
+    return render(request, 'driver/profile.html', {'form': form, 'driver_profile': driver_pro})
+
+@login_required(login_url='/accounts/login/')
+@transaction.atomic
+def edituserprofile(request):
+    instance = request.user
+    if request.method == 'POST':
+        form = RiderForm(request.POST, request.FILES,
+                         instance=request.user)
+        user_profile = RiderForm(
+            request.POST, request.FILES, instance=request.user.rider_profile)
+        if form.is_valid() and user_profile.is_valid():
+            form.save()
+            user_profile.save()
+            messages.success(request, 'Profile successfully updated')
+            return render(request, 'index.html')
+        else:
+            messages.error(
+                request, 'Error while updating profile,,, try again')
+    else:
+        form = RiderForm(instance=request.user)
+        user_profile = RiderForm(instance=request.user.rider_profile)
+
+    return render(request, 'rider/profile_edit.html', {'form': form, 'user_profile': user_profile})
+
+@login_required(login_url='/accounts/login/')
+def user_profile(request):
+
+    current_user=request.user
+
+    profile=Rider.objects.filter(user=current_user).all()
+
+    return render(request,"rider/profile.html",{"profile":profile})
