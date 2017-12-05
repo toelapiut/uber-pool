@@ -97,6 +97,9 @@ db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
 
+# groups
+REGISTRATION_DEFAULT_GROUP_NAME = 'rider'
+DRIVER_GROUP_NAME = 'driver'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -138,14 +141,13 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+# STATICFILES_STORAGE = 'cc.django.GzipManifestStaticFilesStorage'
 
 
-######################### AUTH ############################
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# AUTH_USER_MODEL = "driver.CustomUser"
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-# AUTHENTICATION_BACKENDS = ('driver.backends.CustomUserAuth',)
-
-###########################################################
