@@ -43,7 +43,12 @@ def Driver_Prof(request):
         form = DriverForm(instance=request.user)
         driver_pro = DriversForm(instance=request.user.profile)
 
-    return render(request, 'driver/profile.html', {'form': form, 'driver_profile': driver_pro})
+    return render(request, 'driver/profile_edit.html', {'form': form, 'driver_profile': driver_pro})
+
+
+# @login_required(login_url='/accounts/login/')
+# def edit_driver(request):
+
 
 @login_required(login_url='/accounts/login/')
 @transaction.atomic
