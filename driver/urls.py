@@ -6,10 +6,10 @@ from django.conf import settings
 
 urlpatterns = [
     url(r'^$', views.index, name='welcome'),
-    url(r'^driver/profiles/', views.Driver_Prof, name='driver'),
-    url(r'^profiles/edit/', views.edituserprofile, name='edituserprofile'),
-    url(r'^profile/', views.user_profile, name='user_profile'),
-    # url(r'^driver/profiles/edit/',views.edit_driver,name='editDriverProfile')
+    url(r'^driver/profile/edit/$', views.Driver_Prof, name='driver'),
+    url(r'^profiles/edit/$', views.edituserprofile, name='edituserprofile'),
+    url(r'^profile/$', views.user_profile, name='user_profile'),
+    url(r'^driver/profile/$',views.profile_driver,name='driver_profile')
 ]
 
 if settings.DEBUG:
