@@ -12,7 +12,7 @@
                 <hr>
                 <h4>Email</h4>
                 <h5>{{user.email}}</h5>
-                <hr> 
+                <hr>
                 <div class="edit">
                     <a href="/profiles/edit/">Edit Profile</a>
                 </div>
@@ -36,16 +36,20 @@
                         <!-- </span> -->
                     </a>
                     <a href="/profiles/edit/" class="UnderlineNav-item UnderlineNav-body " aria-selected="false" role="tab" title="Reviews">
-                            Edit Profile
-                        </a>
+                        Edit Profile
+                    </a>
 
                 </nav>
                 <div class="content-wrapper">
-                    
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas porro quasi unde reprehenderit. Asperiores
-                        placeat porro dolor provident, quae dolorum eos in mollitia assumenda minus nihil esse molestiae
-                        laudantium! Molestias!
-                    </p>
+
+
+                    <h2>Your current Location</h2>
+
+                    <div id="map" style="height:400px; width:100%">
+
+                    </div>
+                    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                    <div id="map"></div>
                 </div>
             </div>
         </div>
@@ -54,5 +58,10 @@
 {% block scripts %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB19BRuZB5TAuhEezdHBCRVvKanhlSEt70&libraries=places&callback=initAutocomplete"
+async defer></script>
+<script src="{% static 'js/index.js'%}"></script>
+
+
 {% bootstrap_javascript %} {% endblock%} {%endblock%}
