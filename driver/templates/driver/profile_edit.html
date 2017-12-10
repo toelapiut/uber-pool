@@ -10,20 +10,17 @@
       <!-- Empty div -->
       <div class="col-md-4"></div>
       <div class="col-md-4">
-        <form action='/drive/profiles/edit/' method="post" enctype='multipart/form-data'>
-          {% csrf_token %}
-
-          {% bootstrap_form form %}
+        <form action='/profiles/edit/' method="post" enctype='multipart/form-data'>
+          {% csrf_token %} {% bootstrap_form form %}
           <hr>
           <h3>Additional Information
           </h3>
-          <hr>
-          {% bootstrap_form driver_profile %}
+          <hr> {% bootstrap_form driver_profile %}
           <div class="form-group">
-            <button type="submit">Edit Profile</button>
+              <button type="submit">Edit Profile</button>
           </div>
           <input type="hidden" name="next" value="{{next}}">
-        </form>
+      </form>
 
       </div>
       <!-- empty div -->
