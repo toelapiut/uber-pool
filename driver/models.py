@@ -9,13 +9,15 @@ from uber import settings
 
 class Driver(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    profile_pic = models.ImageField(upload_to='profile_pictures/', blank=True)
-    car_picture = models.ImageField(upload_to='pictures/')
+    profile_pic = models.ImageField(upload_to='user_pics/', blank=True)
+    car_picture = models.ImageField(upload_to='user_pics/')
     number_plates = models.CharField(max_length=30)
     capacity = models.CharField(max_length=30)
     color = models.CharField(max_length=30)
-    phone = PhoneNumberField(max_length=30)
+    phone = models.CharField(max_length=30)
     city = models.CharField(max_length=60)
+    vehicle_name = models.CharField(max_length=60)
+    vehicle_model = models.CharField(max_length=60)
     bio = models.CharField(max_length=140, blank=True)
 
 
@@ -43,7 +45,7 @@ class Rider(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name='rider_profile', unique=True)
     picture = models.ImageField(upload_to='user_pics/', blank=True)
-    phone = PhoneNumberField(max_length=30)
+    phone =models.CharField(max_length=30)
     bio = models.CharField(max_length=500, blank=True)
     username=models.CharField(max_length=12,blank=True)
     email=models.EmailField()
