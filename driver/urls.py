@@ -9,7 +9,8 @@ urlpatterns = [
     url(r'^driver/profile/edit/$', views.Driver_Prof, name='driver'),
     url(r'^profiles/edit/$', views.edituserprofile, name='edituserprofile'),
     url(r'^profile/$', views.user_profile, name='user_profile'),
-    url(r'^driver/profile/$',views.profile_driver,name='driver_profile')
+    url(r'^driver/profile/$',views.profile_driver,name='driver_profile'),
+    url(r'^ajax/driver/rider/$',views.ajax_selection,name='selection'),
 ]
 
 if settings.DEBUG:
