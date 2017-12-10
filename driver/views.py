@@ -7,8 +7,6 @@ from .forms import *
 from django.contrib.auth.models import User, Group
 
 # Create your views here.
-
-
 def index(request):
     title = 'Welcome | uber-pool'
 
@@ -18,36 +16,35 @@ def index(request):
 @login_required(login_url='/accounts/login/')
 @transaction.atomic
 def Driver_Prof(request):
-    '''
-    creating a user instance
-    '''
     instance = request.user
     if request.method == 'POST':
-        '''
-        checking if the form is validated if so we create a form varible to hold the Files
-        '''
-        form = DriversForm(request.POST, request.FILES, instance=request.user)
-        driver_pro= DriversForm(
-            request.POST, request.FILES, instance=request.user.profile)
-        if form.is_valid() and driver_pro.is_valid():
-            instance.groups.add(Group.objects.get(
-                name=settings.DRIVER_GROUP_NAME))
+        form = RiderForm(request.POST, request.FILES,
+                         instance=request.user)
+        user_profile = RiderProfileForm(
+            request.POST, request.FILES, instance=request.user.rider_profile)
+        if form.is_valid() and user_profile.is_valid():
             form.save()
-            driver_pro.save()
+            user_profile.save()
             messages.success(request, 'Profile successfully updated')
-            return redirect(drive)
+            return redirect(ride)
         else:
             messages.error(
-                request, 'Error while activating driver,,, try again')
+                request, 'Error')
     else:
-        form = DriverForm(instance=request.user)
-        driver_pro = DriversForm(instance=request.user.profile)
+        form = RiderForm(instance=request.user)
+        user_profile = RiderProfileForm(instance=request.user.rider_profile)
+
+    return render(request, 'profile.html', {'form': form, 'user_profile': user_profile})
 
     return render(request, 'driver/profile_edit.html', {'form': form, 'driver_profile': driver_pro})
 
 
-# @login_required(login_url='/accounts/login/')
-# def edit_driver(request):
+@login_required(login_url='/accounts/login/')
+def profile_driver(request):
+    current_user=request.user
+    profile=Driver.objects.filter(user=current_user).all()
+
+    return render(request,'driver/profile.html',{"profile":profile})
 
 
 @login_required(login_url='/accounts/login/')
@@ -55,8 +52,8 @@ def Driver_Prof(request):
 def edituserprofile(request):
     instance = request.user
     if request.method == 'POST':
-        form = RiderForm(request.POST, request.FILES,
-                         instance=request.user)
+
+        form = RiderForm(request.POST, request.FILES,instance=request.user)
         user_profile = RiderForm(
             request.POST, request.FILES, instance=request.user.rider_profile)
         if form.is_valid() and user_profile.is_valid():
