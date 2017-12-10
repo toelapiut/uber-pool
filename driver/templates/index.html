@@ -19,12 +19,14 @@
         <img src="{% static 'img/uber_.jpg'%}" alt="Instagram" class="img-responsive" style='height:63vh;width:100%'>
     </div>
     {%endif%}
-    {% block scripts %}
+    
 
+    <button type="" class="btn btn-success" id='driver'>Testing for the get request</button>
+
+    <button type="" class="btn btn-danger" id='rider'>Testing for the get request</button>
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDopOpSK2vHdWYf6EYlNvX_VMF1J-OSnFc&callback=initMap">
-    </script>
-    <script src="{% static 'js/index.js'%}"></script>
+    <script src="{% static 'js/driver_ride.js'%}"></script>
     {% bootstrap_javascript %} {% endblock%} {%endblock%}
