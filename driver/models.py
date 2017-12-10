@@ -80,3 +80,8 @@ def save_user_profile(sender, instance, **kwargs):
 
 
 post_save.connect(create_user_profile, sender=User)
+
+class Driver_Or_Rider(models.Model):  
+
+    user= models.OneToOneField(User, on_delete=models.CASCADE)
+    selection=models.IntegerField()
