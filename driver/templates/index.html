@@ -2,26 +2,29 @@
 
 <div class="wrapper">
     {%if user.is_authenticated and user.groups.ride%}
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit</p>
-        
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit</p>
+
     {%elif user.is_authenticated and user.groups.drive%}
-        <p>laborum officia numquam soluta porro vero dolorum! Fuga odit</p>
+    <p>laborum officia numquam soluta porro vero dolorum! Fuga odit</p>
 
     {%else%}
-        <h1>
-            <span class='get_there'>Get There</span>
-        </h1>
-        <h2>
-            <span class='your_day'>Your day belongs to You</span>
-        </h2>
+    <h1>
+        <span class='get_there'>Get There</span>
+    </h1>
+    <h2>
+        <span class='your_day'>Your day belongs to You</span>
+    </h2>
 
-        <div class="image">
-            <img src="{% static 'img/uber_.jpg'%}" alt="Instagram" class="img-responsive" style='height:63vh;width:100%'>
-        </div>
+    <div class="image">
+        <img src="{% static 'img/uber_.jpg'%}" alt="Instagram" class="img-responsive" style='height:63vh;width:100%'>
+    </div>
     {%endif%}
-</div>
-{% block scripts %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-{% bootstrap_javascript %} {% endblock%} {%endblock%}
+    {% block scripts %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDopOpSK2vHdWYf6EYlNvX_VMF1J-OSnFc&callback=initMap">
+    </script>
+    <script src="{% static 'js/index.js'%}"></script>
+    {% bootstrap_javascript %} {% endblock%} {%endblock%}
